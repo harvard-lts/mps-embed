@@ -1,0 +1,11 @@
+# Environment `development`, `test`, or `production`
+RAILS_ENV=development
+
+# Cookie to store JWT
+# Set to COOKIE_DOMAIN the app domain name
+# Set to 'localhost' for local development
+COOKIE_DOMAIN=app.example.com
+COOKIE_MAX_AGE_MINS=15
+
+# Set to the port number used in the Docker server
+PORT=3000

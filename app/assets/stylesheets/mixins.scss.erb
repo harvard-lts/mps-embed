@@ -1,0 +1,67 @@
+@import 'sul_variables';
+@import 'modules/bootstrap_mixins';
+
+@mixin container-padding {
+  padding: 4px 7px;
+}
+
+@mixin padding-top {
+  padding: 7px;
+}
+
+@mixin license-base {
+  display: inline-block;
+  height: 15px;
+  margin-bottom: 0;
+  margin-right: 6px;
+  width: 80px;
+}
+
+@mixin license-image($license) {
+  background: url('#{$asset_base}#{$license}') no-repeat left;
+}
+
+@mixin panel-list-style {
+  list-style: none;
+  padding-left: 8px;
+}
+
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin well-container {
+  background-color: $sul-background;
+  padding: 10px;
+}
+
+@mixin well-content {
+  @include shadow(2);
+  background-color: $white-color;
+  padding: 10px;
+}
+
+@mixin stanford-only($orientation: right, $icon-padding: 20px) {
+  background: url('#{$asset_base}<%= asset_url("stanford_s.png") %>') no-repeat $orientation;
+  background: url('#{$asset_base}<%= asset_url("stanford_s.svg") %>') no-repeat $orientation, none;
+  padding-#{$orientation}: $icon-padding;
+}
+
+@mixin stanford-only-red {
+  background: url('#{$asset_base}<%= asset_url("stanford_red_s.png") %>') no-repeat 5px;
+// TODO: need svg version
+//  background: url('#{$asset_base}<%= asset_url("stanford_red_s.svg") %>') no-repeat 5px, none;
+}
+
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin rotate ($deg) { 
+	@include transform(rotate(#{$deg}deg));
+}

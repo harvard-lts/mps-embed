@@ -1,0 +1,333 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>embed tester</title>
+  <style>
+    html {
+     box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      color: #333;
+      font-family: 'Open Sans', 'Helvetica Neue', Sans Serif;
+    }
+
+    input[type=text] {
+      padding: 2px 4px;
+    }
+    input#min-files {
+      width: 26px;
+    }
+    .form-params {
+      background-color: #bdc3c7;
+      line-height: 3em;
+      padding: 10px 20px;
+    }
+
+    .form-params .btn-render {
+      background-color: #22313f;
+      border-width: 0;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Open Sans';
+      padding: 6px 12px;
+    }
+
+    .content {
+      padding: 20px;
+      width: 600px;
+    }
+
+    .viewer {
+      clear: left;
+      display: block;
+      margin: 5px 0;
+    }
+
+    td {
+      border: 1px solid black;
+      padding: 0 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    .status {
+      font-size:26px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .failed {
+      color: red;
+    }
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <form action="" class="form-params">
+    <%= text_field_tag 'api-endpoint', "//#{request.host}:#{request.port}#{embed_path}", class: 'api-endpoint', size: 50 %>/?url=
+    <%= text_field_tag 'url-scheme', 'https://purl.stanford.edu/tn629pk3948', class:'url-scheme', size: 50 %>
+    <label for="">&format=</label>
+    <select name="select-format" id="select-format">
+      <option value="json">JSON</option>
+      <option value="xml">XML</option>
+    </select>
+    <label for="">&maxwidth=</label><input type="text" class="max-width" size="4" value="">
+    <label for="">&maxheight=</label><input type="text" class="max-height" size="4" value="">
+    <br>
+    <label for="hide-title">Hide title?</label> <input type="checkbox" id="hide-title" class="hide-title" />
+    <label for="hide-search">Hide search?</label> <input type="checkbox" id="hide-search" class="hide-search" />
+    <label for="hide-search">Minimum files for search:</label> <input type="text" id="min-files" class="min-files" value="10" length="2" />
+    <label for="hide-embed">Hide embed?</label> <input type="checkbox" id="hide-embed" class="hide-embed" />
+    <label for="hide-download">Hide download?</label> <input type="checkbox" id="hide-download" class="hide-download" />
+    <label for="canvas-index">Canvas index</label> <input type="number" id="canvas-index" class="canvas-index" />
+    <br>
+    <input type="button" class="btn-render" value="Embed">
+  </form>
+
+  <div class="content">
+    <p>
+      Nam sit amet mi ut lectus lobortis volutpat. Fusce bibendum sem quis odio feugiat, nec consectetur orci fermentum.
+      Aliquam vel dignissim purus. Aliquam id urna ut nisl fermentum tempus et in odio. Donec varius interdum ex,
+      sed finibus odio. Vivamus in sodales velit, non fermentum odio. Nunc in posuere lacus.
+    </p>
+    <div class="viewer">
+    </div>
+    <p>
+      Proin vestibulum quam sed turpis blandit molestie. Ut a massa a est consequat semper vitae eu augue. Sed consequat
+      euismod molestie. Vivamus tempus venenatis lorem nec facilisis. Mauris ultricies mauris felis. Maecenas efficitur
+      sollicitudin sem non ullamcorper. Praesent auctor vehicula lorem id lobortis. Maecenas eu sapien eu massa facilisis
+      lacinia eget eget eros. Duis in augue augue.
+    </p>
+    <h3>Useful Druids</h3>
+    <ul>
+      <li>
+        Single image - sg052hd9120
+      </li>
+      <li>
+        Multi image - fw090jw3474
+      </li>
+      <li>
+        Book (multi image, paged viewing hint) - cy496ky1984
+      </li>
+      <li>
+        Image with restrictions - bb537hc4022
+      </li>
+      <li>
+        Image with Book download - dn665vh1697
+      </li>
+      <li>
+        Image with pdf and other downloads - bg262qk2288
+      </li>
+      <li>
+        Image (Stanford Only) - yh887qk5737
+      </li>
+      <li>
+        mp4 - bd786fy6312, bb582xs1304
+      </li>
+      <li>
+        mp4, jp2 - tn629pk3948
+      </li>
+      <li>
+        mp3 - jy496kh1727, bb051hp9404
+      </li>
+      <li>
+        mp3 (multiple) - vh816yh7318
+      </li>
+      <li>
+        Files - tn629pk3948
+      </li>
+      <li>
+        Warc-seed - gb089bd2251
+      </li>
+      <li>
+        Geo (Vector)
+        <table>
+          <tr>
+            <td>Public</td>
+            <td>cz128vq0535</td>
+            <td>https://purl.stanford.edu/cz128vq0535</td>
+            <td>https://earthworks.stanford.edu/catalog/stanford-cz128vq0535</td>
+          </tr>
+          <tr>
+            <td>Restricted</td>
+            <td>fp756wn9369</td>
+            <td>https://purl.stanford.edu/fp756wn9369</td>
+            <td>https://earthworks.stanford.edu/catalog/stanford-fp756wn9369</td>
+          </tr>
+        </table>
+      </li>
+      <li>
+        Geo (Raster)
+        <table>
+          <tr>
+            <td>Public</td>
+            <td>tg926kp6619</td>
+            <td>https://purl.stanford.edu/tg926kp6619</td>
+            <td>https://earthworks.stanford.edu/catalog/stanford-tg926kp6619</td>
+          </tr>
+          <tr>
+            <td>Restricted</td>
+            <td>sf815vr1246</td>
+            <td>https://purl.stanford.edu/sf815vr1246</td>
+            <td>https://earthworks.stanford.edu/catalog/stanford-sf815vr1246</td>
+          </tr>
+        </table>
+      </li>
+      <li>
+        Geo Index map - ts545zc6250
+      </li>
+      <li>
+        pdf - bh502xm3351
+      </li>
+      <li>
+        jpg/zip - bh152hk2665
+      </li>
+      <li>
+        text-gzip - wt101ks3240
+      </li>
+      <li>
+        xtar - qy869qz5226
+      </li>
+      <li>
+        longlist - js533sk1281
+      </li>
+      <li>
+        3d - bk914zc7842
+      </li>
+    </ul>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    $(function() {
+      // Turn off jQuery animations on test suite
+      if ('<%= Rails.env %>' === 'test') {
+        if (window.jQuery) { jQuery.fx.off = true; }
+      }
+        $('.btn-render').on('click', function() {
+            embed.render();
+        });
+        $('input').keyup(function (e) {
+            if (e.keyCode == 13) {
+                embed.render();
+            }
+        });
+    });
+
+    var embed = (function() {
+      var url, format, data;
+
+      function init() {
+        if (isValidUrl()) {
+          submitRequest(url);
+        };
+      }
+
+      function isValidUrl() {
+        var apiEndpoint = $.trim($('.api-endpoint').val()),
+            urlScheme = $.trim($('.url-scheme').val()),
+            hideTitle = $('.hide-title').is(':checked'),
+            hideSearch = $('.hide-search').is(':checked'),
+            minFiles = $('.min-files').val(),
+            hideEmbed = $('.hide-embed').is(':checked'),
+            hideDownload = $('.hide-download').is(':checked'),
+            maxWidth = parseInt($('.max-width').val(), 10),
+            maxHeight = parseInt($('.max-height').val(), 10);
+            canvasIndex = parseInt($('.canvas-index').val(), 10);
+
+        format = $('#select-format').val();
+
+        if (apiEndpoint !== "" && urlScheme !== "") {
+          url = apiEndpoint + "/?url=" + urlScheme + "&format=" + format;
+
+          if (hideTitle) url += "&hide_title=true";
+          if (hideSearch) url += "&hide_search=true";
+          if (minFiles) url += "&min_files_to_search=" + minFiles;
+          if (hideEmbed) url += "&hide_embed=true";
+          if (hideDownload) url += "&hide_download=true";
+          if (!isNaN(maxWidth)) url += "&maxwidth=" + maxWidth;
+          if (!isNaN(maxHeight)) url += "&maxheight=" + maxHeight;
+          if (!isNaN(canvasIndex)) url += "&canvas_index=" + canvasIndex;
+
+        } else {
+          alert('Error:\nEmpty API endpoint and/or URL scheme')
+          return false;
+        }
+
+        return true;
+      }
+
+      function appendContent(response) {
+        var $viewer = $('.viewer'),
+            thumbnail_url,
+            width,
+            height;
+
+        if (format === "json") {
+          html = response.html;
+        }
+
+        if (format === "xml") {
+          // xmlDoc = $.parseXML( response );
+        }
+
+        $viewer.empty().width(width).height(height);
+        $viewer.append($('<div>' + html + '</div>'));
+      }
+
+      function submitRequest(url) {
+        if ($('.status').length === 0) {
+            var statusFeedback = $('.viewer').append('<p/>');
+            $('.viewer p').addClass('status');
+        }
+
+        $('.status').removeClass('failed').text('Loading...');
+
+        var request = $.ajax({
+          type: "GET",
+          url: url,
+          dataType: format
+        });
+
+        request.done(function(response) {
+          $('.status').remove();
+          appendContent(response);
+          document.activeElement.blur();
+        });
+
+        request.fail(function(jqXhr, status) {
+          $('.viewer').empty();
+          var statusFeedback = $('.viewer').append('<p/>');
+          $('.viewer p').addClass('status failed').text('Request Failed');
+          console.log('Request failed : ' + status);
+        });
+      }
+
+      return {
+        render: function() { init(); }
+      };
+
+    })();
+  </script>
+</body>
+
+</html>

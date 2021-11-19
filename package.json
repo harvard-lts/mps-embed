@@ -1,0 +1,57 @@
+{
+  "name": "mps-embed",
+  "version": "0.0.0",
+  "description": "The embed microservice for Multimedia Presentation Service (MPS)",
+  "repository": {
+    "type": "git",
+    "url": "git@github.huit.harvard.edu:LTS/mps-embed.git"
+  },
+  "author": "",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.huit.harvard.edu/LTS/mps-embed/issues"
+  },
+  "scripts": {
+    "test": "jest -c jest.config.js"
+  },
+  "private": true,
+  "homepage": "https://github.huit.harvard.edu/LTS/mps-embed/",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.7.4",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@rails/webpacker": "^4.0.7",
+    "fscreen": "^1.0.2",
+    "list.js": "1.1.1",
+    "mirador": "^3.0.0-rc.7",
+    "mirador-dl-plugin": "^0.13.0",
+    "mirador-image-tools": "^0.8.0",
+    "mirador-share-plugin": "^0.11.0",
+    "pdfjs-dist": "2.2.228",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "three": "^0.134.0",
+    "unfetch": "^4.1.0",
+    "url-polyfill": "^1.1.5",
+    "video.js": "^7.11.4",
+    "virtex3d": "^0.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.1.0",
+    "eslint": "^6.0.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-react-app": "^3.0.5",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^23.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "jest": "^26.6.3",
+    "jsdom": "^16.4.0",
+    "webpack-dev-server": "^3.7.0"
+  }
+}

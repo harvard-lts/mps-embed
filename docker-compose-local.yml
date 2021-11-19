@@ -1,0 +1,36 @@
+# Build all images and run all containers
+# `docker-compose -f docker-compose-local.yml up -d --build --force-recreate`
+
+version: '3.8'
+services:
+
+  mps-embed:
+    container_name: mps-embed
+    build:
+      context: ./
+      dockerfile: DockerfileLocal
+    env_file: .env
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+    volumes:
+      # App files to work locally
+      - './app:/home/app/webapp/app'
+      - './node_modules:/home/app/webapp/node_modules'
+      - './db:/home/app/webapp/db'
+      - './config:/home/app/webapp/config'
+      - './spec:/home/app/webapp/spec'
+      - './.rspec:/home/app/webapp/.rspec'
+      # Logs
+      - './log:/home/app/webapp/log'
+      - './log/nginx:/var/log/nginx'
+      - './webapp.conf:/etc/nginx/sites-enabled/webapp.conf'
+    tty: true
+    ports:
+      - "23018:3001"
+    networks:
+      - mirador-sandbox-net
+      
+# Create a custom docker network if it does not exist already
+networks:
+  mirador-sandbox-net:
+    name: mirador-sandbox-net

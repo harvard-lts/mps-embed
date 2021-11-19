@@ -1,0 +1,71 @@
+@import 'common';
+@import 'modules/bootstrap_media';
+@import 'vendor/tooltip';
+@import 'leaflet';
+
+[data-wms-url] {
+  cursor: crosshair;
+}
+
+.sul-embed-geo {
+  position: relative;
+  display: flex;
+}
+
+.sul-embed-geo-sidebar {
+  background: $sul-metadata-bg;
+  min-height: 50px;
+  position: absolute;
+  right: 0;
+  width: 300px;
+
+  &.collapsed {
+    i {
+      @include rotate(180);
+    }
+  }
+}
+
+.sul-embed-geo-sidebar-header {
+  padding: 10px;
+
+  i {
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
+
+.sul-embed-geo-sidebar-content {
+  background: $sul-metadata-bg;
+  overflow: scroll;
+  padding: 0 10px 10px;
+
+  dt {
+    font-weight: bold;
+  }
+
+  .inline-flex {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    overflow: visible;
+    width: 100%;
+
+    // scss-lint:disable SelectorDepth
+    dt {
+      flex: 0 0 33%;
+      overflow: scroll;
+      text-overflow: ellipsis;
+    }
+
+    dd {
+      flex: 0 0 66%;
+      margin-left: auto;
+      overflow: scroll;
+      text-align: left;
+    }
+    // scss-lint:enable SelectorDepth
+  }
+}
