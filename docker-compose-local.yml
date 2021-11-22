@@ -16,6 +16,8 @@ services:
       # App files to work locally
       - './app:/home/app/webapp/app'
       - './node_modules:/home/app/webapp/node_modules'
+      - './node_modules:/home/app/webapp/public/packs'
+      - './node_modules:/home/app/webapp/public/packs-test'      
       - './db:/home/app/webapp/db'
       - './config:/home/app/webapp/config'
       - './spec:/home/app/webapp/spec'
