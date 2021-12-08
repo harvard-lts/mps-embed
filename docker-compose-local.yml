@@ -1,38 +1,27 @@
-# Build all images and run all containers
-# `docker-compose -f docker-compose-local.yml up -d --build --force-recreate`
+# Start: `docker-compose -f docker-compose-local.yml up -d --build --force-recreate`
+# Stop: `docker-compose -f docker-compose-local.yml stop`
 
-version: '3.8'
+version: '3.7'
 services:
 
-  mps-embed:
+  app:
     container_name: mps-embed
     build:
       context: ./
       dockerfile: DockerfileLocal
     env_file: .env
-    environment:
-      RAILS_ENV: ${RAILS_ENV}
+    command: npm run devserverstart
     volumes:
-      # App files to work locally
-      - './app:/home/app/webapp/app'
-      - './node_modules:/home/app/webapp/node_modules'
-      - './node_modules:/home/app/webapp/public/packs'
-      - './node_modules:/home/app/webapp/public/packs-test'      
-      - './db:/home/app/webapp/db'
-      - './config:/home/app/webapp/config'
-      - './spec:/home/app/webapp/spec'
-      - './.rspec:/home/app/webapp/.rspec'
-      # Logs
-      - './log:/home/app/webapp/log'
-      - './log/nginx:/var/log/nginx'
-      - './webapp.conf:/etc/nginx/sites-enabled/webapp.conf'
-    tty: true
+      - './:/home/node/app'
+      - '/home/node/app/node_modules'
     ports:
-      - "23018:3001"
+      - "23018:8081"
+    # Join this service to a custom docker network
     networks:
       - mirador-sandbox-net
-      
-# Create a custom docker network if it does not exist already
+
+
+  # Create a custom docker network if it does not exist already
 networks:
   mirador-sandbox-net:
     name: mirador-sandbox-net

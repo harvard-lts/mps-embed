@@ -1,5 +1,0 @@
-purl_feedback_email: 'some-email-address@distribution-list-host.stanford.edu'
-streaming:
-  auth_url: '/test_auth_endpoint'
-collections_to_show_attribution:
-  - abc

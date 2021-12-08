@@ -7,8 +7,8 @@ version: '3.7'
 services:
 
   app:
-    image: registry.lts.harvard.edu/lts/mps-embed:0.0.2
+    image: registry.lts.harvard.edu/lts/mps-embed:0.0.3
     build:
       context: ./
       dockerfile: Dockerfile
-    command: nginx
+    command: npm start
