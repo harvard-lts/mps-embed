@@ -4,7 +4,7 @@ An [oEmbed](http://oembed.com/) provider for embedding resources from the Harvar
 
 * A HTML page here: https://localhost:23018/
 * A Health Check page here: https://localhost:23018/healthcheck
-* API here: https://localhost:23018/api?urn=xxxx
+* API here: https://localhost:23018/api?recordIdentifier=xxxx
 
 ## Technology Stack
 ##### Language
