@@ -1,2 +1,5 @@
 # Environment 'development', 'test', or 'production'
 ENV=development
+
+# Determine what viewer server to use
+VIEWER_SERVER=<viewer_url>

@@ -7,7 +7,7 @@ const httpCtrl = require('../controllers/http.ctrl');
 router.get('/', async function(req, res, next) {
   
   let data = '';
-  let viewerServer = 'viewer-qa.lib.harvard.edu';
+  let viewerServer = process.env.VIEWER_SERVER;
   let recordIdentifier = req.query.recordIdentifier;
 
   record = await httpCtrl.getItem(recordIdentifier);
@@ -24,7 +24,7 @@ router.get('/', async function(req, res, next) {
       viewer_url: viewer_url,
       height:400,
       width:null,
-      html:"\u003ciframe src=\"/iframe?url="+viewer_url+"\" height=\"400px\" width=\"100%\" title=\"MPS Viewer\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" allowfullscreen\u003e\u003c/iframe\u003e\n"
+      html:"\u003ciframe src=\""+viewer_url+"\" height=\"700px\" width=\"1200px\" title=\""+data.title+"\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" allowfullscreen\u003e\u003c/iframe\u003e\n"
     }
   );
 
