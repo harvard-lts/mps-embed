@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www -L",
-    "devserverstart": "DEBUG=docker-node-js-template:* npm run devstart"
+    "devserverstart": "DEBUG=docker-node-js-template:* npm run devstart",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -29,6 +30,7 @@
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
+    "jest": "^27.4.7",
     "nodemon": "^2.0.13"
   }
 }
