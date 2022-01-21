@@ -57,7 +57,7 @@ app.use(requestLogger('combined', { stream: requestLogStream, flags: 'a', skip: 
 
 // Routes
 app.use(['/healthcheck'], (req, res, next) => {
-    res.status(200).json({ "status": 200, "message": "docker-nodejs-template" });
+    res.status(200).json({ "status": 200, "message": "mps-embed" });
 });
 app.use('/', indexRouter);
 
