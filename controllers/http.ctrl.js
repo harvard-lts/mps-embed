@@ -100,6 +100,37 @@ httpCtrl.getItem = async (recordIdentifier) => {
         }
       }
       return data;
-  };  
+  };
+
+  httpCtrl.removePager = async (iiifManifest) => {
+    let result = {};
+    let response;
+    let viewingHint = '';
+    let removePager = '';
+
+    try {
+      response = await axios.get(iiifManifest);
+    } catch(e) {
+      const errorMsg = e.response && e.response.data ? e.response.data : e.code;
+      console.log(errorMsg);
+      result.error = errorMsg;
+      result.status = result.error.status || 500;
+      return result;
+    }
+
+    result.status = response && response.status || 500;
+    result.data = response && response.data || {};
+    
+    if (result.data.sequences !== null) {
+      if (result.data.sequences[0].hasOwnProperty('viewingHint')) {
+        viewingHint = result.data.sequences[0].viewingHint;
+        if (viewingHint == 'individuals') {
+          removePager="removePager=1";
+        }
+      }
+    }
+
+    return removePager;
+  };
 
 module.exports = httpCtrl;

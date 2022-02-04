@@ -7,8 +7,7 @@ const { body,validationResult } = require('express-validator');
 
 router.get("/", function (req, res) {
     res.render("index", {
-        title: "Docker NodeJS Template!",
-        body: "Hello, World!",
+        title: "Welcome to MPS Embed!",
     });
 })
 
