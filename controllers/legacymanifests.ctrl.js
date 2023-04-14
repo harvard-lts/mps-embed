@@ -1,6 +1,5 @@
-const https = require('https');
-const axios = require('axios');
 const httpCtrl = require('./http.ctrl');
+const consoleLogger = require('../logger/logger.js').console;
 
 const legacyManifestsCtrl = {};
 
@@ -92,6 +91,24 @@ legacyManifestsCtrl.getData = async (record) => {
           
       }
     }
+  }
+  return data;
+};
+
+legacyManifestsCtrl.getManifest = async (recordIdentifier) => {
+  let data, record;
+  try {
+    record = await legacyManifestsCtrl.getItem(recordIdentifier);
+  } catch(e) {
+    consoleLogger.error(e);
+    throw new Error(e);
+  }
+
+  try {
+    data = await legacyManifestsCtrl.getData(record);
+  } catch(e) {
+    consoleLogger.error(e);
+    throw new Error(e);
   }
   return data;
 };
