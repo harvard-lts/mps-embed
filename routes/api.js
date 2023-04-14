@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const httpCtrl = require('../controllers/http.ctrl');
+const legacyManifestsCtrl = require('../controllers/legacymanifests.ctrl');
 
 /* GET embed from API. */
 router.get('/', async function(req, res, next) {
@@ -10,8 +10,8 @@ router.get('/', async function(req, res, next) {
   let viewerServer = process.env.VIEWER_SERVER;
   let recordIdentifier = req.query.recordIdentifier;
 
-  record = await httpCtrl.getItem(recordIdentifier);
-  data = await httpCtrl.getData(record);
+  record = await legacyManifestsCtrl.getItem(recordIdentifier);
+  data = await legacyManifestsCtrl.getData(record);
   viewer_url = "https://"+viewerServer+"/viewer/"+data.uriType+"/"+data.drsFileId;
   
   res.json( 
