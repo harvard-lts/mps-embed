@@ -8,20 +8,20 @@ services:
     container_name: mps-embed
     build:
       context: ./
-      dockerfile: DockerfileLocal
+      dockerfile: Dockerfile
     env_file: .env
     command: npm run devserverstart
     volumes:
-      - './:/home/node/app'
-      - '/home/node/app/node_modules'
+      - './:/home/mpsadm'
+      - '/home/mpsadm/node_modules'
     ports:
       - "23018:8081"
     # Join this service to a custom docker network
     networks:
       - mps-net
 
-
   # Create a custom docker network if it does not exist already
 networks:
   mps-net:
     name: mps-net
+    

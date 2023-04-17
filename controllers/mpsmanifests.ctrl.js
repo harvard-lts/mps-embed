@@ -15,8 +15,14 @@ mpsManifestsCtrl.getManifest = async (manifestUrl) => {
 
 };
 
-mpsManifestsCtrl.getManifestUrl = async (urn, version = '3') => {
-  consoleLogger.debug('getManifestUrl');
+/**
+ * Create manifestId (url to the manifest)
+ * @param {*} urn URN of the manifest
+ * @param {*} version version of the manifest 2 or 3
+ * @returns manifestId fqdn url to the manifest
+ */
+mpsManifestsCtrl.getManifestId = async (urn, version = '3') => {
+  consoleLogger.debug('getManifestId');
   const mpsManifestBaseUrl = process.env.MPS_MANIFEST_BASEURL || `https://mps.lib.harvard.edu/iiif`;
   const manifestUrl = `${mpsManifestBaseUrl}/${version}/${urn}`;
   consoleLogger.debug('manifestUrl');
