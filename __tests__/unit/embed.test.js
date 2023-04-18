@@ -71,3 +71,14 @@ describe('Test MPS Embed Successful API Route mps manifest version 2', () => {
     expect(response.status).toBe(200);
   });
 });
+
+describe('Test MPS Embed Successful API Route mps manifest version 3', () => {
+  test('Successful response from api route mps manifest version 3', async () => {
+    const urn = 'URN-3:DIV.LIB.USC:3200357';
+    const response = await testsAgent.get(`/api/mps?urn=${urn}&manifestVersion=3`)
+      .catch(function (error) {
+        console.log(error);
+      });
+    expect(response.status).toBe(200);
+  });
+});
