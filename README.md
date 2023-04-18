@@ -4,7 +4,9 @@ An [oEmbed](http://oembed.com/) provider for embedding resources from the Harvar
 
 * A HTML page here: https://localhost:23018/
 * A Health Check page here: https://localhost:23018/healthcheck
-* API here: https://localhost:23018/api?recordIdentifier=xxxx
+* API:
+  * https://localhost:23018/api/legacy?recordIdentifier=xxxx
+  * https://localhost:23018/api/mps?urn=xxxx&manifestVersion=3
 
 ## Technology Stack
 ##### Language
@@ -19,7 +21,7 @@ Docker Compose
 ## Local Development Environment Setup Instructions
 
 ### 1: Clone the repository to a local directory
-```git clone git@gitlab.com:harvard-library-web-team/embed-sandbox.git```
+```git clone git@gitlab.com:harvard-library-web-team/mps-embed.git```
 
 ### 2: Create app config
 
@@ -44,10 +46,10 @@ docker-compose -f docker-compose-local.yml up --build --force-recreate
 
 ##### Run docker exec to execute a shell in the container by name
 
-Open a shell using the exec command to access the embed-sandbox container.
+Open a shell using the exec command to access the mps-embed container.
 
 ```
-docker exec -it embed-sandbox bash
+docker exec -it mps-embed bash
 ```
 
 ### 6: Stop
