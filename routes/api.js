@@ -6,17 +6,14 @@ const legacyManifestsCtrl = require('../controllers/legacymanifests.ctrl');
 const mpsManifestsCtrl = require('../controllers/mpsmanifests.ctrl');
 
 const viewerServer = process.env.VIEWER_SERVER;
-const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
 
 /* GET embed from API. */
 router.get('/legacy', async function(req, res, next) {
-
-  let result = {};
   
-
   let recordIdentifier = req.query.recordIdentifier;
+  const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
 
-  let data;
+  let data, result = {};
 
   try {
     data = await legacyManifestsCtrl.getManifest(recordIdentifier);
@@ -25,20 +22,19 @@ router.get('/legacy', async function(req, res, next) {
     result.error = e;
     return res.status(500).json(result);
   }
-
   
   consoleLogger.debug("api.js /legacy");
-  consoleLogger.debug(viewerUrl);
   consoleLogger.debug(JSON.stringify(data));
   const manifestId = `https://iiif.lib.harvard.edu/manifests/${data.uriType}:${data.drsFileId}`;
-  viewerUrl.searchParams.append("manifestId", manifestId);
   
-  consoleLogger.debug(`viewerUrl`);
-  consoleLogger.debug(viewerUrl);
-  consoleLogger.debug(`viewerUrl.href`);
-  consoleLogger.debug(viewerUrl.href);
   consoleLogger.debug(`manifestId`);
   consoleLogger.debug(manifestId);
+
+  consoleLogger.debug(`viewerUrl before`);
+  consoleLogger.debug(viewerUrl);
+  viewerUrl.searchParams.append("manifestId", manifestId);
+  consoleLogger.debug(`viewerUrl after`);
+  consoleLogger.debug(viewerUrl);
 
   res.json( 
     {
@@ -63,7 +59,8 @@ router.get('/mps', async function(req, res, next) {
   
   const urn = req.query.urn;
   const manifestVersion = req.query.manifestVersion || '3';
-
+  const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
+  
   let manifestId, manifestResponse, manifestData;
 
   try {
@@ -83,7 +80,7 @@ router.get('/mps', async function(req, res, next) {
     return res.status(500).json(result);
   }
 
-  viewerUrl = `https://${viewerServer}/viewer/mps/${urn}`;
+  viewerUrl.searchParams.append("manifestId", manifestId);
   
   consoleLogger.debug("api.js /mps");
   consoleLogger.debug(viewerUrl);
