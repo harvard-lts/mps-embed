@@ -24,10 +24,9 @@ mpsManifestsCtrl.getManifest = async (manifestUrl) => {
 mpsManifestsCtrl.getManifestId = async (urn, version = '3') => {
   consoleLogger.debug('getManifestId');
   const mpsManifestBaseUrl = process.env.MPS_MANIFEST_BASEURL || `https://mps.lib.harvard.edu/iiif`;
-  const manifestUrl = `${mpsManifestBaseUrl}/${version}/${urn}`;
-  consoleLogger.debug('manifestUrl');
-  consoleLogger.debug(manifestUrl);
-  return manifestUrl
+  const manifestId = `${mpsManifestBaseUrl}/${version}/${urn}`;
+  consoleLogger.debug(`urn ${urn} version ${version} manifestId ${manifestId}`);
+  return manifestId;
 };
 
 module.exports = mpsManifestsCtrl;

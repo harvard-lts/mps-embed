@@ -25,15 +25,17 @@ router.get('/legacy', async function(req, res, next) {
   
   consoleLogger.debug("api.js /legacy");
   consoleLogger.debug(JSON.stringify(data));
-  const manifestId = `https://iiif.lib.harvard.edu/manifests/${data.uriType}:${data.drsFileId}`;
+
+  const legacyManifestBaseUrl = process.env.LEGACY_MANIFEST_BASEURL || `https://iiif.lib.harvard.edu/manifests`;
+
+  const manifestId = `${legacyManifestBaseUrl}/${data.uriType}:${data.drsFileId}`;
   
   consoleLogger.debug(`manifestId`);
   consoleLogger.debug(manifestId);
 
-  consoleLogger.debug(`viewerUrl before`);
-  consoleLogger.debug(viewerUrl);
   viewerUrl.searchParams.append("manifestId", manifestId);
-  consoleLogger.debug(`viewerUrl after`);
+
+  consoleLogger.debug(`viewerUrl`);
   consoleLogger.debug(viewerUrl);
 
   res.json( 
@@ -53,14 +55,16 @@ router.get('/legacy', async function(req, res, next) {
 });
 
 router.get('/mps', async function(req, res, next) {
-  consoleLogger.debug("api.js /mps");
 
   let result = {};
   
   const urn = req.query.urn;
-  const manifestVersion = req.query.manifestVersion || '3';
+  const manifestVersion = req.query.manifestVersion;
   const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
   
+  consoleLogger.debug("api.js /mps");
+  consoleLogger.debug(`urn ${urn} manifestVersion ${manifestVersion}`);
+
   let manifestId, manifestResponse, manifestData;
 
   try {
@@ -80,12 +84,9 @@ router.get('/mps', async function(req, res, next) {
     return res.status(500).json(result);
   }
 
-  viewerUrl.searchParams.append("manifestId", manifestId);
-  
-  consoleLogger.debug("api.js /mps");
-  consoleLogger.debug(viewerUrl);
-  consoleLogger.debug(manifestId);
   //consoleLogger.debug(JSON.stringify(manifestData));
+  viewerUrl.searchParams.append("manifestId", manifestId);
+  consoleLogger.debug(viewerUrl);
 
   const title = manifestData.id || '';
 
