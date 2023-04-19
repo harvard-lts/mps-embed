@@ -4,6 +4,9 @@ ENV=development
 # Determine what viewer server to use
 VIEWER_SERVER=<viewer_url>
 
+# Set this to 'false' for local testing. Set to 'true' for other environments
+HTTPS_REJECT_UNAUTHORIZED=false
+
 # Set base url for legacy manifests (optional) defaults to https://iiif.lib.harvard.edu/manifests
 LEGACY_MANIFEST_BASEURL=https://iiif.lib.harvard.edu/manifests
 
