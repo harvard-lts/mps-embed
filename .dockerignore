@@ -4,3 +4,4 @@ Dockerfile*
 docker-compose*
 /logs/*
 !/logs/.keep
+.config/
