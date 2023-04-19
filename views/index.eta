@@ -2,15 +2,28 @@
 
 <div id="main-container" class="container">
   <div class="row">
-      <div class="col-md-12">
-        <h2>Welcome to MPS Embed!</h2>
-      </div>
+    <div class="col-md-12">
+      <h2><%= it.title %></h2>
+    </div>
   </div>
   <div class="row">
-      <div class="col-md-12">
-        <div class="list-group">
-          The examples have been moved to the <a href="https://github.com/harvard-lts/mps-viewer">mps-viewer project</a>. The mps-viewer project showcases manifests for both version 2 and version 3.
-        </div>
+    <h3>IDS Examples (legacy)</h3>
+    <div class="col-md-12">
+      <div class="list-group">
+      <% it.idsExamples.forEach(function(idsExample){ %>
+        <a href="<%= idsExample.href %>" class="list-group-item list-group-item-action"><%= idsExample.text %></a>
+      <% }) %>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>MPS Examples</h3>
+    <div class="col-md-12">
+      <div class="list-group">
+        <% it.mpsExamples.forEach(function(mpsExample){ %>
+          <a href="<%= mpsExample.href %>" class="list-group-item list-group-item-action"><%= mpsExample.text %> - version <%= mpsExample.version %></a> 
+        <% }) %>
+      </div>
+    </div>
   </div>
 </div>
