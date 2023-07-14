@@ -91,7 +91,6 @@ router.get('/mps', async function(req, res, next) {
   const title = manifestData.id || '';
   //const title = manifestData.metadata[0].value[0] || '';
   
-
   res.json( 
     {
       type: "mps",
