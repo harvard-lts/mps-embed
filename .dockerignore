@@ -5,3 +5,5 @@ docker-compose*
 /logs/*
 !/logs/.keep
 .config/
+config/*
+!config/example-items-example.txt
