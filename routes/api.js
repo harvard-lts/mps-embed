@@ -88,8 +88,16 @@ router.get('/mps', async function(req, res, next) {
   viewerUrl.searchParams.append("manifestId", manifestId);
   consoleLogger.debug(viewerUrl);
 
-  const title = manifestData.id || '';
-
+  let title = manifestData.id || ''; 
+  if (manifestData.hasOwnProperty('label')) {
+    if (manifestData.label.hasOwnProperty('none')) {
+      title = manifestData.label.none[0] || '';
+    } 
+    else {
+      title = manifestData.label || '';
+    }
+  }
+  
   res.json( 
     {
       type: "mps",
