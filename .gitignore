@@ -107,3 +107,7 @@ dist
 .DS_Store
 
 .config/
+
+# Configuration
+/config/*
+!/config/example-items-example.txt

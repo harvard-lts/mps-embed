@@ -32,6 +32,15 @@ Docker Compose
 
 *Note: The config file .env is specifically excluded in .gitignore and .dockerignore, since it contains credentials it should NOT ever be committed to any repository.*
 
+### 3: Create example items
+
+#### Create config file for environment variables
+- Make a copy of the example items example file `./config/example-items-example.txt`
+- Rename the file to `example-items.json`
+- Replace placeholder values as necessary
+
+*Note: The config file .example-items.json is specifically excluded in .gitignore and .dockerignore, since the examples will differ from environment to environment.*
+
 ### 4: Start
 
 ##### START
