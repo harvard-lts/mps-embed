@@ -14,6 +14,7 @@ services:
     volumes:
       - './:/home/mpsadm'
       - '/home/mpsadm/node_modules'
+      - './config/example-items.json:/home/mpsadm/config/example-items.json:ro'
     ports:
       - "23018:8081"
     # Join this service to a custom docker network
