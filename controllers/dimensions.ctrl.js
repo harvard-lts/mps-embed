@@ -6,8 +6,7 @@ dimensionsCtrl.getDimension = (dimensionParameter, defaultValue) => {
     let currentDimension = defaultValue;
     if (dimensionParameter) {
         if (Number.isInteger(parseInt(dimensionParameter))) {
-            currentDimension = parseInt(dimensionParameter);
-            currentDimension = Math.abs(currentDimension);
+            currentDimension = Math.abs(parseInt(dimensionParameter));
         }
     }
     return currentDimension;
