@@ -4,6 +4,7 @@ const consoleLogger = require('../logger/logger.js').console;
 
 const legacyManifestsCtrl = require('../controllers/legacymanifests.ctrl');
 const mpsManifestsCtrl = require('../controllers/mpsmanifests.ctrl');
+const dimensionsCtrl = require('../controllers/dimensions.ctrl');
 
 const viewerServer = process.env.VIEWER_SERVER;
 
@@ -11,6 +12,8 @@ const viewerServer = process.env.VIEWER_SERVER;
 router.get('/legacy', async function(req, res, next) {
   
   let recordIdentifier = req.query.recordIdentifier;
+  let currentWidth=1200;
+  let currentHeight=700;
   const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
 
   let data, result = {};
@@ -38,6 +41,11 @@ router.get('/legacy', async function(req, res, next) {
   consoleLogger.debug(`viewerUrl`);
   consoleLogger.debug(viewerUrl);
 
+  consoleLogger.debug('width: '+req.query.width);
+  consoleLogger.debug('height: '+req.query.height);
+  currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
+  currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight);
+
   res.json( 
     {
       type: data.uriType,
@@ -46,9 +54,9 @@ router.get('/legacy', async function(req, res, next) {
       title: data.title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      height: 400,
-      width: null,
-      html: "\u003ciframe src=\""+viewerUrl+"\" height=\"700px\" width=\"1200px\" title=\""+data.title+"\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" allowfullscreen\u003e\u003c/iframe\u003e\n"
+      height: currentHeight,
+      width: currentWidth,
+      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"px' width='"+currentWidth+"px' title='"+data.title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
@@ -66,6 +74,8 @@ router.get('/mps', async function(req, res, next) {
   consoleLogger.debug(`urn ${urn} manifestVersion ${manifestVersion}`);
 
   let manifestId, manifestResponse, manifestData;
+  let currentWidth=1200;
+  let currentHeight=700;
 
   try {
     manifestId = await mpsManifestsCtrl.getManifestId(urn, manifestVersion);
@@ -97,7 +107,12 @@ router.get('/mps', async function(req, res, next) {
       title = manifestData.label || '';
     }
   }
-  
+
+  consoleLogger.debug('width: '+req.query.width);
+  consoleLogger.debug('height: '+req.query.height);
+  currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
+  currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight); 
+
   res.json( 
     {
       type: "mps",
@@ -106,9 +121,9 @@ router.get('/mps', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      height: 400,
-      width: null,
-      html: "\u003ciframe src=\""+viewerUrl+"\" height=\"700px\" width=\"1200px\" title=\""+title+"\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" allowfullscreen\u003e\u003c/iframe\u003e\n"
+      height: currentHeight,
+      width: currentWidth,
+      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"px' width='"+currentWidth+"px' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
