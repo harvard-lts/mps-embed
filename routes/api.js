@@ -45,7 +45,7 @@ router.get('/legacy', async function(req, res, next) {
   consoleLogger.debug('height: '+req.query.height);
   currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
   currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight);
-
+  
   res.json( 
     {
       type: data.uriType,
@@ -112,7 +112,7 @@ router.get('/mps', async function(req, res, next) {
   consoleLogger.debug('height: '+req.query.height);
   currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
   currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight); 
-
+  
   res.json( 
     {
       type: "mps",
@@ -123,7 +123,7 @@ router.get('/mps', async function(req, res, next) {
       viewerUrl: viewerUrl,
       height: currentHeight,
       width: currentWidth,
-      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"px' width='"+currentWidth+"px' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
