@@ -56,7 +56,7 @@ router.get('/legacy', async function(req, res, next) {
       viewerUrl: viewerUrl,
       height: currentHeight,
       width: currentWidth,
-      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"px' width='"+currentWidth+"px' title='"+data.title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+data.title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
