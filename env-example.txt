@@ -7,8 +7,15 @@ VIEWER_SERVER=<viewer_url>
 # Set this to 'false' for local testing. Set to 'true' for other environments
 HTTPS_REJECT_UNAUTHORIZED=false
 
-# Set base url for legacy manifests (optional) defaults to https://iiif.lib.harvard.edu/manifests
+# Set base url for legacy manifests (optional) 
+# Defaults to https://iiif.lib.harvard.edu/manifests
 LEGACY_MANIFEST_BASEURL=https://iiif.lib.harvard.edu/manifests
 
-# Set base url for mps manifests (optional) defaults to https://mps.lib.harvard.edu/iiif
+# Set base url for mps manifests for specific environments(optional).  
+# Defaults to https://mps.lib.harvard.edu/iiif
 MPS_MANIFEST_BASEURL=https://mps.lib.harvard.edu/iiif
+
+# Set this to the MPS URL for production. 
+# This is used as an override to allow all environments to use Production MPS.
+# Defaults to https://mps.lib.harvard.edu/iiif
+MPS_MANIFEST_PRODURL=https://mps.lib.harvard.edu/iiif

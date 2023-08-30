@@ -69,6 +69,7 @@ router.get('/mps', async function(req, res, next) {
   const urn = req.query.urn;
   const manifestVersion = req.query.manifestVersion;
   const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
+  const productionOverride = req.query.prod;
   
   consoleLogger.debug("api.js /mps");
   consoleLogger.debug(`urn ${urn} manifestVersion ${manifestVersion}`);
@@ -78,7 +79,7 @@ router.get('/mps', async function(req, res, next) {
   let currentHeight=700;
 
   try {
-    manifestId = await mpsManifestsCtrl.getManifestId(urn, manifestVersion);
+    manifestId = await mpsManifestsCtrl.getManifestId(urn, manifestVersion, productionOverride);
   } catch(e) {
     consoleLogger.error(e);
     result.error = e;
