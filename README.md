@@ -28,7 +28,7 @@ Docker Compose
 ##### Create config file for environment variables
 - Make a copy of the config example file `./env-example.txt`
 - Rename the file to `.env`
-- Replace placeholder values as necessary
+- Replace placeholder values from one of the environment-specific json files included in the `/config/` folder.
 
 *Note: The config file .env is specifically excluded in .gitignore and .dockerignore, since it contains credentials it should NOT ever be committed to any repository.*
 
