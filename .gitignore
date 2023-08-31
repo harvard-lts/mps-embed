@@ -109,5 +109,4 @@ dist
 .config/
 
 # Configuration
-/config/*
-!/config/example-items-example.txt
+/config/example-items.json
