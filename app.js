@@ -12,6 +12,7 @@ const https = require('https');
 const http = require('http');
 const fs = require('fs');
 const eta = require('eta');
+const cors = require('cors');
 
 // App
 const app = express();
@@ -31,6 +32,11 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 // Favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+// CORS
+app.use(cors({
+    origin: '*'
+}));
 
 // Bootstrap
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));

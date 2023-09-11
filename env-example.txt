@@ -19,3 +19,12 @@ MPS_MANIFEST_BASEURL=https://mps.lib.harvard.edu/iiif
 # This is used as an override to allow all environments to use Production MPS.
 # Defaults to https://mps.lib.harvard.edu/iiif
 MPS_MANIFEST_PRODURL=https://mps.lib.harvard.edu/iiif
+
+# Set base url for the NRS (Name Resolution Service) for specific environments(optional).  
+# Defaults to https://nrs.harvard.edu
+NRS_BASEURL=https://nrs.harvard.edu
+
+# Set this to the NRS URL for production. 
+# This is used as an override to allow all environments to use Production NRS.
+# Defaults to https://nrs.harvard.edu
+NRS_PRODURL=https://nrs.harvard.edu

@@ -188,4 +188,56 @@ router.get('/manifest', async function(req, res, next) {
 
 });
 
+router.get('/nrs', async function(req, res, next) {
+
+  let result = {};
+
+  const urn = req.query.urn;
+  const productionOverride = req.query.prod;
+  const nrsBaseUrl  = (productionOverride == 1) ? process.env.NRS_PRODURL : process.env.NRS_BASEURL || `https://nrs.harvard.edu`;
+  consoleLogger.debug("api.js /manifest");
+  consoleLogger.debug(`urn ${urn}`);
+
+  let currentWidth=1200;
+  let currentHeight=700; 
+  let manifestId = nrsBaseUrl+'/'+urn+':MANIFEST';
+  let viewerUrl = nrsBaseUrl+'/'+urn+':VIEWER';
+  let manifestResponse, manifestData;
+
+  try {
+    manifestResponse = await mpsManifestsCtrl.getManifest(manifestId);
+    manifestData = manifestResponse.data || {};
+  } catch(e) {
+    consoleLogger.error(e);
+    result.error = e;
+    return res.status(500).json(result);
+  } 
+  //consoleLogger.debug(JSON.stringify(manifestData));
+
+  let title = manifestData.id || ''; 
+  if (manifestData.hasOwnProperty('label')) {
+    if (manifestData.label.hasOwnProperty('none')) {
+      title = manifestData.label.none[0] || '';
+    } 
+    else {
+      title = manifestData.label || '';
+    }
+  }
+
+  res.json( 
+    {
+      type: "manifest",
+      version: "1.0",
+      provider_name: "MPS Embed",
+      title: title,
+      iiif_manifest: manifestId,
+      viewerUrl: viewerUrl,
+      height: currentHeight,
+      width: currentWidth,
+      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+    }
+  );
+
+});
+
 module.exports = router;
