@@ -17,8 +17,8 @@
 		},
 	],
 	"mpsExamples": [{
-			"version2": "/api/mps?urn=URN-3:HUL.GUEST:409464?manifestVersion=2",
-			"version3": "/api/mps?urn=URN-3:HUL.GUEST:409464?manifestVersion=3",
+			"version2": "/api/mps?urn=URN-3:HUL.GUEST:409464&manifestVersion=2",
+			"version3": "/api/mps?urn=URN-3:HUL.GUEST:409464&manifestVersion=3",
 			"title": "Mosquito brigades and how to organize them.",
 			"owner": "Test item (no owner)",
 			"type": "page-turned object",
@@ -26,8 +26,8 @@
 			"environment": "QA"
 		},
 		{
-			"version2": "/api/mps?urn=urn-3:DIV.LIB:42551491?manifestVersion=2&prod=1",
-			"version3": "/api/mps?urn=urn-3:DIV.LIB:42551491?manifestVersion=3&prod=1",
+			"version2": "/api/mps?urn=urn-3:DIV.LIB:42551491&manifestVersion=2&prod=1",
+			"version3": "/api/mps?urn=urn-3:DIV.LIB:42551491&manifestVersion=3&prod=1",
 			"title": "Unitarian Service Committee. Case Files, 1938-1951.",
 			"owner": "Harvard Divinity School",
 			"type": "page-turned object",
