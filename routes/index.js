@@ -5,13 +5,13 @@ const consoleLogger = require('../logger/logger.js').console;
 
 router.get("/", async (req, res) => {
 
-    let exampleItems;
+    let exampleItems = {idsExamples: [], mpsExamples: []};
     try {
-      exampleItems = await examplesCtrl.getExamples();
+      exampleItems = await examplesCtrl.getExamples('example-items.json');
     } catch(e) {
       consoleLogger.error(e);
     }
-
+    
     const idsExamples = exampleItems.idsExamples;
     const mpsExamples = exampleItems.mpsExamples;
 
