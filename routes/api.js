@@ -184,7 +184,7 @@ router.get('/nrs', async function(req, res, next) {
   let currentWidth=1200;
   let currentHeight=700; 
   let manifestId = nrsBaseUrl+'/'+urn+':MANIFEST';
-  let viewerUrl = nrsBaseUrl+'/'+urn+':VIEWER';
+  let viewerUrl = nrsBaseUrl+'/'+urn+':VIEW';
   let manifestResponse, manifestData;
 
   try {
