@@ -10,6 +10,12 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Install modules
         run: npm install
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+            name: "example-items.json"
+            json: '{"idsExamples":[{"version2":"/api/legacy?recordIdentifier=W401849_URN-3:HUL.ARCH:2009749","version3":"","title":"Harvard University Baseball Team, photograph, 1892","owner":"Harvard University Archives","type":"single image","size":"small (1507 x 1167px)"}],"mpsExamples":[{"version2":"/api/mps?urn=URN-3:DIV.LIB:29999858&manifestVersion=2","version3":"/api/mps?urn=URN-3:DIV.LIB:29999858&manifestVersion=3","nrs":"/api/nrs/?urn=URN-3:DIV.LIB:29999858","title":"Foote, Henry Wilder, 1875-1964. Papers of Professor Henry Wilder Foote and Family, 1714-1959.","owner":"Harvard Divinity School","type":"page-turned object","size":"3 pages","environment":"PROD"}]}'
       - name: Run tests
         run: npm run test:unit
       - run: echo "This job's status is ${{ job.status }}."  
