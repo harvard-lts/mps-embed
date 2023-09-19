@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const consoleLogger = require('../logger/logger.js').console;
 
+const apiCtrl = require('../controllers/api.ctrl');
 const legacyManifestsCtrl = require('../controllers/legacymanifests.ctrl');
 const mpsManifestsCtrl = require('../controllers/mpsmanifests.ctrl');
 const dimensionsCtrl = require('../controllers/dimensions.ctrl');
@@ -85,7 +86,6 @@ router.get('/mps', async function(req, res, next) {
     result.error = e;
     return res.status(500).json(result);
   }
-
   try {
     manifestResponse = await mpsManifestsCtrl.getManifest(manifestId);
     manifestData = manifestResponse.data || {};
@@ -94,20 +94,11 @@ router.get('/mps', async function(req, res, next) {
     result.error = e;
     return res.status(500).json(result);
   }
-
   //consoleLogger.debug(JSON.stringify(manifestData));
   viewerUrl.searchParams.append("manifestId", manifestId);
   consoleLogger.debug(viewerUrl);
 
-  let title = manifestData.id || ''; 
-  if (manifestData.hasOwnProperty('label')) {
-    if (manifestData.label.hasOwnProperty('none')) {
-      title = manifestData.label.none[0] || '';
-    } 
-    else {
-      title = manifestData.label || '';
-    }
-  }
+  let title = apiCtrl.getTitle(manifestData);
 
   consoleLogger.debug('width: '+req.query.width);
   consoleLogger.debug('height: '+req.query.height);
@@ -157,15 +148,7 @@ router.get('/manifest', async function(req, res, next) {
   viewerUrl.searchParams.append("manifestId", manifestId);
   consoleLogger.debug(viewerUrl);
 
-  let title = manifestData.id || ''; 
-  if (manifestData.hasOwnProperty('label')) {
-    if (manifestData.label.hasOwnProperty('none')) {
-      title = manifestData.label.none[0] || '';
-    } 
-    else {
-      title = manifestData.label || '';
-    }
-  }
+  let title = apiCtrl.getTitle(manifestData);
 
   consoleLogger.debug('width: '+req.query.width);
   consoleLogger.debug('height: '+req.query.height);
@@ -213,16 +196,7 @@ router.get('/nrs', async function(req, res, next) {
     return res.status(500).json(result);
   } 
   //consoleLogger.debug(JSON.stringify(manifestData));
-
-  let title = manifestData.id || ''; 
-  if (manifestData.hasOwnProperty('label')) {
-    if (manifestData.label.hasOwnProperty('none')) {
-      title = manifestData.label.none[0] || '';
-    } 
-    else {
-      title = manifestData.label || '';
-    }
-  }
+  let title = apiCtrl.getTitle(manifestData);
 
   res.json( 
     {

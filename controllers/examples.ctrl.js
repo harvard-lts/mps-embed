@@ -4,10 +4,20 @@ const path = require('path');
 
 const examplesCtrl = {};
 
-examplesCtrl.getExamples = async () => {
-    
-    const data = await fsPromises.readFile(path.join(__dirname, '..', 'config', 'example-items.json'))
-        .catch((err) => console.error('Failed to read file', err));
+/**
+ * getExamples
+ * Get the examples from the example file. 
+ * @method
+ */
+examplesCtrl.getExamples = async (jsonFile = 'example-items.json') => {
+    await fsPromises.readFile(path.join(__dirname, '..', 'config', jsonFile))
+    .then(function (result) {
+        data = result;
+    })
+    .catch(function (error) {
+        console.log(error);
+        throw new TypeError('The example file is not read properly.');
+    })
 
     return JSON.parse(data.toString());
 };
