@@ -13,8 +13,8 @@ const viewerServer = process.env.VIEWER_SERVER;
 router.get('/legacy', async function(req, res, next) {
   
   let recordIdentifier = req.query.recordIdentifier;
-  let currentWidth=1200;
-  let currentHeight=700;
+  let currentWidth='100%';
+  let currentHeight='100%';
   const viewerUrl = new URL(`https://${viewerServer}/viewer/`);
 
   let data, result = {};
@@ -44,8 +44,8 @@ router.get('/legacy', async function(req, res, next) {
 
   consoleLogger.debug('width: '+req.query.width);
   consoleLogger.debug('height: '+req.query.height);
-  currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
-  currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight);
+  currentWidth = dimensionsCtrl.getDimension('100%', currentWidth);
+  currentHeight = dimensionsCtrl.getDimension('100%', currentHeight);
   
   res.json( 
     {
@@ -55,8 +55,6 @@ router.get('/legacy', async function(req, res, next) {
       title: data.title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      height: currentHeight,
-      width: currentWidth,
       html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+data.title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
@@ -76,8 +74,8 @@ router.get('/mps', async function(req, res, next) {
   consoleLogger.debug(`urn ${urn} manifestVersion ${manifestVersion}`);
 
   let manifestId, manifestResponse, manifestData;
-  let currentWidth=1200;
-  let currentHeight=700;
+  let currentWidth='100%';
+  let currentHeight='100%';
 
   try {
     manifestId = await mpsManifestsCtrl.getManifestId(urn, manifestVersion, productionOverride);
@@ -102,8 +100,8 @@ router.get('/mps', async function(req, res, next) {
 
   consoleLogger.debug('width: '+req.query.width);
   consoleLogger.debug('height: '+req.query.height);
-  currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
-  currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight); 
+  currentWidth = dimensionsCtrl.getDimension('100%', currentWidth);
+  currentHeight = dimensionsCtrl.getDimension('100%', currentHeight);
   
   res.json( 
     {
@@ -113,8 +111,6 @@ router.get('/mps', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      height: currentHeight,
-      width: currentWidth,
       html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
@@ -132,8 +128,8 @@ router.get('/manifest', async function(req, res, next) {
   consoleLogger.debug(`manifestId ${manifestId}`);
 
   let manifestResponse, manifestData;
-  let currentWidth=1200;
-  let currentHeight=700;
+  let currentWidth='100%';
+  let currentHeight='100%';
 
   try {
     manifestResponse = await mpsManifestsCtrl.getManifest(manifestId);
@@ -152,8 +148,8 @@ router.get('/manifest', async function(req, res, next) {
 
   consoleLogger.debug('width: '+req.query.width);
   consoleLogger.debug('height: '+req.query.height);
-  currentWidth = dimensionsCtrl.getDimension(req.query.width, currentWidth);
-  currentHeight = dimensionsCtrl.getDimension(req.query.height, currentHeight); 
+  currentWidth = dimensionsCtrl.getDimension('100%', currentWidth);
+  currentHeight = dimensionsCtrl.getDimension('100%', currentHeight); 
   
   res.json( 
     {
@@ -163,8 +159,6 @@ router.get('/manifest', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      height: currentHeight,
-      width: currentWidth,
       html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
@@ -181,8 +175,8 @@ router.get('/nrs', async function(req, res, next) {
   consoleLogger.debug("api.js /manifest");
   consoleLogger.debug(`urn ${urn}`);
 
-  let currentWidth=1200;
-  let currentHeight=700; 
+  let currentWidth='100%';
+  let currentHeight='100%'; 
   let manifestId = nrsBaseUrl+'/'+urn+':MANIFEST';
   let viewerUrl = nrsBaseUrl+'/'+urn+':VIEW';
   let manifestResponse, manifestData;
@@ -206,8 +200,6 @@ router.get('/nrs', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      height: currentHeight,
-      width: currentWidth,
       html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
