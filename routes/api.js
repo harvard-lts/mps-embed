@@ -55,7 +55,7 @@ router.get('/legacy', async function(req, res, next) {
       title: data.title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+data.title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+      html: "\u003ciframe name='mps-embed-legacy' src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+data.title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
@@ -111,7 +111,7 @@ router.get('/mps', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+      html: "\u003ciframe name='mps-embed-mps' src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
@@ -159,7 +159,7 @@ router.get('/manifest', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+      html: "\u003ciframe name='mps-embed-manifest' src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
@@ -200,7 +200,7 @@ router.get('/nrs', async function(req, res, next) {
       title: title,
       iiif_manifest: manifestId,
       viewerUrl: viewerUrl,
-      html: "\u003ciframe src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
+      html: "\u003ciframe name='mps-embed-nrs' src='"+viewerUrl+"' height='"+currentHeight+"' width='"+currentWidth+"' title='"+title+"' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' allowfullscreen\u003e\u003c/iframe\u003e"
     }
   );
 
