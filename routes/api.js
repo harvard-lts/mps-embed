@@ -178,7 +178,9 @@ router.get('/nrs', async function(req, res, next) {
 
   let sequenceViewString = '';
   if (sequence) {
-    sequenceViewString = '?n='+sequence;
+    if (Number.isInteger(parseFloat(sequence))) {
+      sequenceViewString = '?n='+sequence;
+    }
   }
   let currentWidth='100%';
   let currentHeight='100%'; 
