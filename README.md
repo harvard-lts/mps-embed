@@ -1,4 +1,4 @@
-# MPS Embed
+# MPS Embed trial
 
 An [oEmbed](http://oembed.com/) provider for embedding resources from the Harvard University Library. Based on Stanford's [SUL-Embed](https://github.com/sul-dlss/sul-embed)
 
