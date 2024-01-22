@@ -171,14 +171,21 @@ router.get('/nrs', async function(req, res, next) {
 
   const urn = req.query.urn;
   const productionOverride = req.query.prod;
+  const sequence = req.query.n;
   const nrsBaseUrl  = (productionOverride == 1) ? process.env.NRS_PRODURL : process.env.NRS_BASEURL || `https://nrs.harvard.edu`;
   consoleLogger.debug("api.js /manifest");
   consoleLogger.debug(`urn ${urn}`);
 
+  let sequenceViewString = '';
+  if (sequence) {
+    if (Number.isInteger(parseFloat(sequence))) {
+      sequenceViewString = '?n='+sequence;
+    }
+  }
   let currentWidth='100%';
   let currentHeight='100%'; 
   let manifestId = nrsBaseUrl+'/'+urn+':MANIFEST';
-  let viewerUrl = nrsBaseUrl+'/'+urn+':VIEW';
+  let viewerUrl = nrsBaseUrl+'/'+urn+':VIEW'+sequenceViewString;
   let manifestResponse, manifestData;
 
   try {

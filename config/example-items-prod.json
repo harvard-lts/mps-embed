@@ -67,6 +67,14 @@
 			"environment": "PROD"
 		},
 		{
+			"nrs": "/api/nrs/?urn=urn-3:FMUS.ARN:37536095&prod=1&n=3",
+			"title": "Plate 3. Epimedium grandiflorum ; Alfred Riocreux botanical watercolors.",
+			"owner": "Botany Libraries",
+			"type": "page-turned object",
+			"size": "96 pages",
+			"environment": "PROD"
+		},
+		{
 			"version2": "/api/mps?urn=URN-3:HLS.LIBR:102621314&manifestVersion=2",
 			"version3": "/api/mps?urn=URN-3:HLS.LIBR:102621314&manifestVersion=3",
 			"nrs": "/api/nrs/?urn=URN-3:HLS.LIBR:102621314",
