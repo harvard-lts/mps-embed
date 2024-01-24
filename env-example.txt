@@ -28,3 +28,6 @@ NRS_BASEURL=https://nrs.harvard.edu
 # This is used as an override to allow all environments to use Production NRS.
 # Defaults to https://nrs.harvard.edu
 NRS_PRODURL=https://nrs.harvard.edu
+
+# Set this to true to log to stdout. Set it to false to log to files. Default is false.
+LOG_TO_STDOUT=false
