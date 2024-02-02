@@ -1,6 +1,6 @@
 {
   "name": "mps-embed",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Testing out simple oembed for use with viewer.",
   "author": "Phil Plencner <philip_plencner@harvard.edu>",
   "main": "app.js",
