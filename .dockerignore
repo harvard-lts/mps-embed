@@ -4,6 +4,7 @@ Dockerfile*
 docker-compose*
 /logs/*
 !/logs/.keep
+.env
 .config/
 config/*
 !config/example-items-example.txt
