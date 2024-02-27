@@ -23,7 +23,8 @@ RUN echo 'umask 002' >> /home/${APP_ID_NAME}/.profile && \
 WORKDIR /home/${APP_ID_NAME}
 COPY . /home/${APP_ID_NAME}
 
-RUN npm install
+RUN npm install && \
+    chown -R 193:199 "/home/mpsadm/.npm"
 
 USER ${APP_ID_NAME}
 
