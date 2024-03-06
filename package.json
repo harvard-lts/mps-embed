@@ -16,7 +16,7 @@
     "test:integration": "./node_modules/.bin/jest --testPathPattern=__tests__/integration"
   },
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^1.6.0",
     "body-parser": "^1.20.1",
     "bootstrap": "^4.6.0",
     "cookie-parser": "^1.4.5",
